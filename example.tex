@@ -7,16 +7,53 @@
 \usepackage{lipsum}  % For test only
 
 \begin{document}
+
+\linenumbers{}
 \maketitle
 
-\section{Intro}
+\section{A section}
+\lipsum[1]
+
+\subsection{A subsection}
 \lipsum[2]
 
-\[ \lim_{n\to \infty} \left(1 + \frac{1}{n}\right)^n = e \]
+\begin{equation}\label{eq:exp}
+  \lim_{n\to \infty} \left(1 + \frac{1}{n}\right){}^n = e  
+\end{equation}
 
 \lipsum[1]
 
-\section{Conclusions}
+\subsubsection{A cute subsubsection}
+\lipsum[1]
+\begin{figure}[!hbt]
+    \centering
+    \includegraphics[width=0.7\textwidth]{example-image-a}
+    \caption{This is a figure with a very long caption because I want to show you how the indentation works when there is a line break in a figure's title.\\ I'm not sure about the indent for titles with more than one paragraph.}\label{fig:longtitle}
+\end{figure}
+
+\lipsum[1]
+
+\subsection{Another subsection}
+
+\lipsum[1]
+\begin{table}[!hbt]
+    \centering
+    \caption{A table with bold and center-aligned headers}\label{tab:shorttitle}
+    \begin{tabularx}{0.5\textwidth}{crEE}
+        \toprule
+        \multirowthead{2}{Obs} & \multirowthead{2}{Attr 1} & \multicolumn{2}{c}{\thead{Attr 2}} \\
+        \cmidrule(lr){3-4}
+        & & \thead{SubAttr 1} & \thead{SubAttr 2} \\
+        \midrule
+        A & 1.0 & 2.0 & -12.0 \\
+        B & -3.0 & -101.4 & 4.7 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+We can refer to equations or floatings using \verb+\trbref+ commands, showing as \autoref{eq:exp}, \autoref{fig:longtitle} and \autoref{tab:shorttitle}.
+
+\section{Last Section}
 
 \lipsum[1]
 
