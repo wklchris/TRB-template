@@ -67,6 +67,12 @@
 \RequirePackage{graphicx}
   \graphicspath{{./code/}, {./pics/}}
 
+% Preprint
+\RequirePackage[blocks]{authblk}
+  \renewcommand\Authfont{\raggedright\bfseries}
+  \setlength{\affilsep}{0pt}
+  \newcommand\email[1]{\href{mailto:#1}{#1}}
+
 % --- User Customization ---
 \RequirePackage{amsmath}
   \allowdisplaybreaks%
