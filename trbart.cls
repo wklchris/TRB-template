@@ -80,8 +80,24 @@
 
 % Bibliography
 % \RequirePackage{babel, csquotes}
-% \RequirePackage[style=biblatex-apa]{biblatex}
-%   \addbibresource{refs.bib}
+\RequirePackage[english]{babel}
+\RequirePackage{csquotes}
+\RequirePackage[
+  citestyle=numeric-comp,
+  bibstyle=numeric,
+  sorting=none,  % Sorted in citation order
+  autocite=inline
+]{biblatex}
+
+%% Type: article
+%% Remove quotation marks
+\DeclareFieldFormat[article]{title}{#1\isdot}
+%% Remove 'in:'
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
+
+\addbibresource{refs.bib}
+
 
 % --- User Customization ---
 \RequirePackage[fleqn]{amsmath}
@@ -117,7 +133,7 @@
     \setlist[description]{font=\bfseries\ttfamily~,itemsep=5pt,parsep=0pt,topsep=1ex,partopsep=0pt}
 
 % Cross references & URLs
-\usepackage[hyphens]{url}  % allow URL line breaks
+% \usepackage[hyphens]{url}  % allow URL line breaks
 \usepackage[hidelinks]{hyperref}
   \hypersetup{
     %pdfpagemode=UseNone,

@@ -10,11 +10,9 @@
 
 \date{}
 
-\usepackage{lipsum}  % For test only
 
 \begin{document}
-
-\linenumbers{}
+\linenumbers%
 \maketitle
 
 
@@ -81,6 +79,7 @@ The \LaTeX\ code of \autoref{tab:shorttitle} is shown below:
 \centering
 \caption{A table with bold and center-aligned headers}
 \label{tab:shorttitle}
+%\newcolumntype{E}{>{\raggedleft\arraybackslash}X}
 \begin{tabularx}{0.5\textwidth}{crEE}
     \toprule
     \multirowthead{2}{Obs} & \multirowthead{2}{Attr 1} &
@@ -113,7 +112,41 @@ The \LaTeX\ code of \autoref{tab:shorttitle} is shown below:
 We can refer to equations or floatings using \verb+\autoref+ commands, showing as \autoref{eq:exp}, \autoref{fig:longtitle} and \autoref{tab:shorttitle}. The bold format is achieved because the \verb+\autoref+ command has been redefined in the template.
 
 \section{References Section}
+Different with normal settings, this template requires \texttt{biblatex} package with Biber backend, while a large amount of users are using BibTeX backend. These two approaches both accept \texttt{.bib} file as the references source, but with some differences in entry (key) names of some references type. For example, the biblatex package uses \texttt{journaltitle} for \texttt{\@article} type, instead of BibTeX's \texttt{journal}. 
 
-The references section starts from a new page. TRB allows numeric citation or Harvard style citation. This article goes with a numeric citation style with round brackets. For example, I cite an article here.
+Here is a simple table showing the entry types that works with biblatex package (\autoref{tab:shorttitle}). 
+\begin{table}[!hbt]
+    \centering
+    \caption{Common entry types in biblatex's bib files}\label{tab:bib}
+    \begin{tabular}{rlll}
+        \toprule
+        \thead{Doc types} & \thead{Alias} & \thead{Keys} & \thead{Also often used} \\
+        \midrule
+        article & & author, title, journaltitle, year/date & \\
+        book & & author, title, year/date & publisher \\
+        online & electronic & author/editor, title, year/date, url & urldate \\
+        inproceedings & conference & author, title, booktitle, year/date & location \\
+        thesis & \({}^\dagger{}\) & author, title, type, institution, year/date & \\
+        \bottomrule
+        \(\dagger{}\) & \multicolumn{3}{l}{You need to use `type' key to specify it is a master's or phd's thesis;} \\
+        & \multicolumn{3}{l}{or use alias masterthesis/phdthesis without `type' key.}
+    \end{tabular}
+\end{table}
+
+The references section starts from a new page. TRB allows numeric citation or Harvard style citation. This article goes with a numeric citation style with round brackets. For example, here I cite an article~\autocite{egarticle}, a book~\autocite{egbook}, and a conference article~\autocite{egconference}. Sometimes we also cite online files~\autocite{egonline}. 
+
+In this template, formats of bibliography items are similar to:
+\begin{description}
+    \item[article] Last, First, Last, First, and Last, First. Title. \textit{Journaltitle}, year. Volume: doi or pagerange.
+    \item[book] Authors. \textit{Title}. Publisher, year.
+    \item[online] Authors. \textit{Title}. \texttt{URL}. Accessed July 1, 1900.
+    \item[inproceedings] Authors. Title. \texttt{Booktitle}. Location, year.
+    \item[thesis] Authors. \textit{Title}. Institution, year. 
+\end{description} 
+
+% Reference
+\newpage
+\nolinenumbers%
+\printbibliography[title=REFERENCES]
 
 \end{document}
