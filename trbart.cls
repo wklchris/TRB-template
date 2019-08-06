@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{trbart}[2019/07/27]
+\ProvidesClass{trbart}[2019/08/06]
 
 % --- Updated before 99th (Jan 2020) TRB meeting ---
 % Requirements not controled by commands:
@@ -41,9 +41,12 @@
 
 % Section title format
 \RequirePackage[pagestyles]{titlesec}
-  \titleformat{\section}{\bfseries\large}{}{0pt}{\uppercase}
+  \titleformat{\section}{\bfseries}{}{0pt}{\uppercase}
+  \titlespacing*{\section}{0pt}{\baselineskip}{0pt}
   \titleformat{\subsection}{\bfseries}{}{0pt}{}
+  \titlespacing*{\subsection}{0pt}{\baselineskip}{0pt}
   \titleformat{\subsubsection}{\itshape}{}{0pt}{}
+  \titlespacing*{\subsubsection}{0pt}{\baselineskip}{0pt}
 
 % Tables
 \RequirePackage{caption}
@@ -72,10 +75,30 @@
   \renewcommand\Authfont{\raggedright\bfseries}
   \setlength{\affilsep}{0pt}
   \newcommand\email[1]{\href{mailto:#1}{#1}}
+%% Titlepage format
+
+
+% Bibliography
+% \RequirePackage{babel, csquotes}
+% \RequirePackage[style=biblatex-apa]{biblatex}
+%   \addbibresource{refs.bib}
 
 % --- User Customization ---
-\RequirePackage{amsmath}
+\RequirePackage[fleqn]{amsmath}
+  \setlength{\mathindent}{0pt}
   \allowdisplaybreaks%
+  %% User definitions
+  \newcommand\ud{\mathop{}\negthinspace\mathrm{d}}
+  \newcommand\pfrac[2]{\frac{\partial #1}{\partial #2}}
+  %% Line number of equation: compatiblity for 'fleqn' of amsmath
+  \makeatletter
+  \let\oldequation\equation
+  \let\oldendequation\endequation
+  \renewenvironment{equation}
+    {\linenomathWithnumbers\oldequation}
+    {\oldendequation\endlinenomath}
+  \makeatother
+
 \RequirePackage{mathtools}
   \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
   \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
@@ -84,7 +107,17 @@
 \RequirePackage{xcolor}
   \newcommand\tbd[1]{\textcolor{red}{(#1)}}
 
-% --- Others ---
+% Lists
+\usepackage[inline]{enumitem}
+    \renewcommand{\theenumi}{\arabic{enumi}}
+    \renewcommand{\labelenumi}{\theenumi.}
+    \setlist[enumerate]{label=(\arabic*),leftmargin=*,itemsep=5pt,parsep=0pt,topsep=1ex,partopsep=0pt,listparindent=0.8\parindent}
+    \setlist[itemize]{itemsep=5pt,parsep=0pt,topsep=1ex,partopsep=0pt,listparindent=0.8\parindent}
+    \setlist[itemize, 2]{label={$\star$}}
+    \setlist[description]{font=\bfseries\ttfamily~,itemsep=5pt,parsep=0pt,topsep=1ex,partopsep=0pt}
+
+% Cross references & URLs
+\usepackage[hyphens]{url}  % allow URL line breaks
 \usepackage[hidelinks]{hyperref}
   \hypersetup{
     %pdfpagemode=UseNone,

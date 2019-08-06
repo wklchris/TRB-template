@@ -1,6 +1,6 @@
 \documentclass[12pt]{trbart}
 
-\title{TRB Template: an Example}
+\title{TRB Template: an Introduction of `trbart' documentclass}
 
 \author{Author A}
 \author{Author B}
@@ -17,31 +17,84 @@
 \linenumbers{}
 \maketitle
 
-\section{A section}
-\lipsum[1]
 
-\subsection{A subsection}
-\lipsum[2]
+\section{Introduction}
+This documents is an example of the \texttt{trbart} class \LaTeX\ file maintained in \url{https://github.com/wklchris/TRB-template}. I would introduce main settings of the template through this document.
 
+Some settings are simple and I just list them here:
+\begin{itemize}
+    \item Paragraph indentation is \(0.5\) inches. First paragraph of each sections are also indented.
+\end{itemize}
+
+
+\section{Outline Formats}
+This template is based on the standard \texttt{article} documnetclass, and there are 3 outline levels in total:
+\begin{itemize}
+    \item Section: Each letter is captalized. Bold series.
+    \item Subsection: Initial letter of each word is captalized. Bold series.
+    \item Subsubsection: Only first letter of the whole title is captalized. Italic shape.
+\end{itemize}
+
+Here are examples to show the format of different outline levels.
+
+\subsection{A subsection example}
+This is a subsection example.
+
+\subsubsection{A subsubsection example}
+This is a subsubsection example.
+
+
+\section{Titlepage}
+The titlepage is inserted by the command \verb+\maketitle+. Author names are in bold font, followed by the affiliation of the author, the street address, the city \& state with zipcode, and his/her email.
+
+
+\section{Equations}
+Equations are left-aligned and counted towards line numbers. This style is achieved by \texttt{fleqn} option of the \texttt{amsmath} package with \verb+\mathindent+ set to zero. Please use \texttt{equation} environment to write equations so that they can be correctly linenumbered --- I only configured the compatiblity between this environment and the \texttt{fleqn} option. Let's try a well-known theorem:
+\begin{equation}\label{eq:triangle}
+    a^2 + b^2 = c^2
+\end{equation}
+where \(c\) is the hypotenuse of a right triangle, \(a\) and \(b\) are the two legs.
+
+Here is a more complicated example. Though there are two lines, but the this equation will be counted as whole in the line number sequence.
 \begin{equation}\label{eq:exp}
-  \lim_{n\to \infty} \left(1 + \frac{1}{n}\right){}^n = e  
+\begin{dcases}
+    \frac{\ud \boldsymbol{p}}{\ud t} &= -\pfrac{H}{\boldsymbol{q}} \\
+    \frac{\ud \boldsymbol{q}}{\ud t} &= \pfrac{H}{\boldsymbol{p}}
+\end{dcases} 
 \end{equation}
 
-\lipsum[1]
+The citation style of equations (\autoref{eq:triangle} and \autoref{eq:exp}) are bold with the default color.
 
-\subsubsection{A cute subsubsection}
-\lipsum[1]
+\section{Floatings: Figures and Tables}
+There is nothing special for figures. \autoref{fig:longtitle} is an example of a figure with a long title.
 \begin{figure}[!hbt]
     \centering
     \includegraphics[width=0.7\textwidth]{example-image-a}
     \caption{This is a figure with a very long caption because I want to show you how the indentation works when there is a line break in a figure's title.\\ I'm not sure about the indent for titles with more than one paragraph.}\label{fig:longtitle}
 \end{figure}
 
-\lipsum[1]
+You may include table with \texttt{tabularx} package. The \LaTeX\ code below will create an output of \autoref{tab:shorttitle}. Table typesetting varies from person to person, so you don't have to follow my settings.
 
-\subsection{Another subsection}
+The \LaTeX\ code of \autoref{tab:shorttitle} is shown below:
+\begin{verbatim}
+\begin{table}[!hbt]
+\centering
+\caption{A table with bold and center-aligned headers}
+\label{tab:shorttitle}
+\begin{tabularx}{0.5\textwidth}{crEE}
+    \toprule
+    \multirowthead{2}{Obs} & \multirowthead{2}{Attr 1} &
+    \multicolumn{2}{c}{\thead{Attr 2}} \\
+    \cmidrule(lr){3-4}
+    & & \thead{SubAttr 1} & \thead{SubAttr 2} \\
+    \midrule
+    A & 1.0 & 2.0 & -12.0 \\
+    B & -3.0 & -101.4 & 4.7 \\
+    \bottomrule
+\end{tabularx}
+\end{table}   
+\end{verbatim}
 
-\lipsum[1]
 \begin{table}[!hbt]
     \centering
     \caption{A table with bold and center-aligned headers}\label{tab:shorttitle}
@@ -57,10 +110,10 @@
     \end{tabularx}
 \end{table}
 
-We can refer to equations or floatings using \verb+\trbref+ commands, showing as \autoref{eq:exp}, \autoref{fig:longtitle} and \autoref{tab:shorttitle}.
+We can refer to equations or floatings using \verb+\autoref+ commands, showing as \autoref{eq:exp}, \autoref{fig:longtitle} and \autoref{tab:shorttitle}. The bold format is achieved because the \verb+\autoref+ command has been redefined in the template.
 
-\section{Last Section}
+\section{References Section}
 
-\lipsum[1]
+The references section starts from a new page. TRB allows numeric citation or Harvard style citation. This article goes with a numeric citation style with round brackets. For example, I cite an article here.
 
 \end{document}
