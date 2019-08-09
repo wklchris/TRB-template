@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{trbart}[2019/08/06]
+\ProvidesClass{trbart}[2019/08/09]
 
 % --- Updated before 99th (Jan 2020) TRB meeting ---
 % Requirements not controled by commands:
@@ -71,15 +71,57 @@
   \graphicspath{{./code/}, {./pics/}}
 
 % Preprint
-\RequirePackage[blocks]{authblk}
-  \renewcommand\Authfont{\raggedright\bfseries}
-  \setlength{\affilsep}{0pt}
-  \newcommand\email[1]{\href{mailto:#1}{#1}}
-%% Titlepage format
+% \RequirePackage[blocks]{authblk}
+%   \renewcommand\Authfont{\raggedright\bfseries}
+%   \setlength{\affilsep}{0pt}
+
+% Definition:
+%   - title
+%   - authors, affiliations and emails
+\newcommand\email[1]{\href{mailto:#1}{#1}}
+\newcommand{\trbtitle}{%
+  TRB Template: an Introduction of `trbart' Documentclass
+}
+\newcommand{\NumberAuthors}{3}
+
+\RequirePackage{arrayjobx}
+  \newarray\authors
+  \readarray{authors}{wklchris&Author Null&Author Null}
+  \newarray\affils
+  \readarray{affils}{Univ. Example&Univ. Null&Research Center Null}
+  \newarray\addresses
+  \readarray{addresses}{City, State Zipcode&City, State Zipcode&City, State Zipcode}
+  \newarray\emails
+  \readarray{emails}{\email{wklchris@hotmail.com}&No Email&No Email}
+
+%% Redefinition of \maketitle
+\RequirePackage{xparse, multido}
+\NewDocumentCommand{\emptyline}{ O{1} }{%
+  \linebreak%
+  \multido{\i=1+1}{#1}{\mbox{}\linebreak}
+}
+
+\renewcommand{\maketitle}{
+  \thispagestyle{empty}
+  \begin{flushleft}
+    \textbf{\trbtitle}\emptyline[2]
+    %% Insert Authors
+    \multido{\iAuthor=1+1}{\NumberAuthors}{%
+      \textbf{\authors(\iAuthor)}\\
+      \affils(\iAuthor)\\
+      \addresses(\iAuthor)\\
+      \emails(\iAuthor)\emptyline
+    }
+    %% Word Counts & Submission date
+    Word count: 7000 words + 2 tables (250 words per table) = 7500 words
+    \emptyline[2]
+    \textit{Submitted August 1, 2000}
+  \end{flushleft}
+  \newpage
+}
 
 
 % Bibliography
-% \RequirePackage{babel, csquotes}
 \RequirePackage[english]{babel}
 \RequirePackage{csquotes}
 \RequirePackage[
@@ -98,6 +140,10 @@
 
 \addbibresource{refs.bib}
 
+\newcommand\printtrbrefs{
+  \newpage\nolinenumbers%
+  \printbibliography[title=REFERENCES]
+}
 
 % --- User Customization ---
 \RequirePackage[fleqn]{amsmath}

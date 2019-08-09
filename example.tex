@@ -1,17 +1,7 @@
 \documentclass[12pt]{trbart}
 
-\title{TRB Template: an Introduction of `trbart' documentclass}
-
-\author{Author A}
-\author{Author B}
-\affil{University First\\ Address First\\ \email{first@example.com}}
-\author{Author C}
-\affil{University Second\\ Address Second\\ \email{second@example.com}}
-
-\date{}
-
-
 \begin{document}
+
 \linenumbers%
 \maketitle
 
@@ -19,10 +9,7 @@
 \section{Introduction}
 This documents is an example of the \texttt{trbart} class \LaTeX\ file maintained in \url{https://github.com/wklchris/TRB-template}. I would introduce main settings of the template through this document.
 
-Some settings are simple and I just list them here:
-\begin{itemize}
-    \item Paragraph indentation is \(0.5\) inches. First paragraph of each sections are also indented.
-\end{itemize}
+This document is for developers (users do \textbf{NOT} need to read this document thoroughly, but you might find something valuable if you flip through it). If you are a user who doesn't care details at all, please refer to the ReadMe file as a quick guide.
 
 
 \section{Outline Formats}
@@ -43,7 +30,11 @@ This is a subsubsection example.
 
 
 \section{Titlepage}
-The titlepage is inserted by the command \verb+\maketitle+. Author names are in bold font, followed by the affiliation of the author, the street address, the city \& state with zipcode, and his/her email.
+This template does not use the original command for titlepage (like \verb+\title+). Instead, it uses \verb+\trbtitle+. \textbf{You should capitalize initial letter of each word in the title manually} (and pay attention to `a', `an', `the', etc.), since this template doesn't automatically do the capitalization for you.
+
+The titlepage is inserted by the command \verb+\maketitle+ (which has been redefined). Author names are in bold font (\verb+\authors+), followed by the affiliation of the author (\verb+\affils+), the city \& state with zipcode (\verb+\addresses+), and his/her email (\verb+\emails+). 
+
+To modify aforementioned informations in the titlepage, I suggest you to open \texttt{trbart.cls} file and search for ``trbtitle''. You will see all of their definitions there and then you can edit them accordingly. 
 
 
 \section{Equations}
@@ -71,7 +62,7 @@ There is nothing special for figures. \autoref{fig:longtitle} is an example of a
     \caption{This is a figure with a very long caption because I want to show you how the indentation works when there is a line break in a figure's title.\\ I'm not sure about the indent for titles with more than one paragraph.}\label{fig:longtitle}
 \end{figure}
 
-You may include table with \texttt{tabularx} package. The \LaTeX\ code below will create an output of \autoref{tab:shorttitle}. Table typesetting varies from person to person, so you don't have to follow my settings.
+You may include table with \texttt{tabularx} package for complex tables. The \LaTeX\ code below will create an output of \autoref{tab:shorttitle}. Table typesetting varies from person to person, so you don't have to follow my settings.
 
 The \LaTeX\ code of \autoref{tab:shorttitle} is shown below:
 \begin{verbatim}
@@ -114,7 +105,7 @@ We can refer to equations or floatings using \verb+\autoref+ commands, showing a
 \section{References Section}
 Different with normal settings, this template requires \texttt{biblatex} package with Biber backend, while a large amount of users are using BibTeX backend. These two approaches both accept \texttt{.bib} file as the references source, but with some differences in entry (key) names of some references type. For example, the biblatex package uses \texttt{journaltitle} for \texttt{\@article} type, instead of BibTeX's \texttt{journal}. 
 
-Here is a simple table showing the entry types that works with biblatex package (\autoref{tab:shorttitle}). 
+Here is a simple table showing the entry types that works with biblatex package (\autoref{tab:shorttitle}). This time, the table is included with the default \texttt{tabular} environment, but not \texttt{tabularx}.
 \begin{table}[!hbt]
     \centering
     \caption{Common entry types in biblatex's bib files}\label{tab:bib}
@@ -144,9 +135,9 @@ In this template, formats of bibliography items are similar to:
     \item[thesis] Authors. \textit{Title}. Institution, year. 
 \end{description} 
 
+You can see the references list on the next page. The list is given by a introduced command named \verb+\printtrbrefs+.
+
 % Reference
-\newpage
-\nolinenumbers%
-\printbibliography[title=REFERENCES]
+\printtrbrefs%
 
 \end{document}
