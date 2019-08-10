@@ -8,15 +8,15 @@ On using this template, you should be aware that the author of this template is 
 
 ## Dependencies
 
-- A TeX Distribution installed ([TeX Live](https://www.tug.org/texlive/) is recommended), or using an online LaTeX platform like [Overleaf](https://www.overleaf.com/);
+- This template is for LaTeX users who have installed a TeX Distribution ([TeX Live](https://www.tug.org/texlive/) is recommended), or use an online LaTeX platform like [Overleaf](https://www.overleaf.com/);
 - XeLaTeX with Times New Roman font is the default setting (Overleaf also supports Times New Roman). If you prefer pdfLaTeX, please follow the comments in the class file (`trbart.cls`) to use `mathptmx` package and comment lines related to `fontspec`.
 - For the bibliography part, `biblatex` package with `biber` backend is applied. There is no `BibTeX` requirement and nor is it used here.
 
-You can read the `trbart.cls` file thoroughly to check the packages required by this template. Users with TeX Live (>=2017) fully installed don't need to install anything more. 
+You can read the `trbart.cls` file thoroughly to check the packages required by this template. Users with TeX Live (>=2017) fully installed don't need to install anything more. Last, an alternative way to check the dependencies is to try to compile the `example.tex` file. 
 
-## Quick Guide: How to Use
+## Quick User Guide: How to Use
 
-After the dependency check, you may follow these steps to use this template:
+As a quick guide, you may follow these steps to use this template:
 
 1. **Documentclass**: Download the class file (`trbart.cls`) into the main directory of your LaTeX project, then use `trbart` as the document class in your main LaTeX file:
     ```
@@ -32,6 +32,13 @@ After the dependency check, you may follow these steps to use this template:
    - The main differenc between Biber-style and BibTeX-style is that the `journal` key is replaced by `journaltitle` key in the `@article` reference class.  
    - As my personal suggestion, you can copy the BibTeX-style citation (research searching engines like Google Scholar often provide this), then replace every `jounral=` (if it's under an `@article` class) with `journaltitle=`.
 5. **Compile**: This template is tested under XeLaTeX, so I also advise you to compile your final doc with XeLaTeX. You may need a `XeLaTeX -> Biber -> XeLaTeX -> XeLaTeX` compile chain. To configure your editor with such compile chain, here is a helpful link that you can't miss: [StackExchange - Configuring my editor to avoid undefined citations](https://tex.stackexchange.com/questions/154751/biblatex-with-biber-configuring-my-editor-to-avoid-undefined-citations). 
+
+## Advanced guide
+
+If you have compiled the `example.tex` by XeLaTeX-Biber compile chain, you will get a PDF that introduces this template with more details. Or you can switch to [Releases page of this repo](https://github.com/wklchris/TRB-template/releases) to get the PDF (but possibly not in the latest version).
+
+That document is designed for advanced users or developers. Even if you are not an experienced LaTeX user,you can still flip through it since it provides some examples that might help or inspire you.
+
 
 ## References
 

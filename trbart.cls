@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{trbart}[2019/08/09]
+\ProvidesClass{trbart}[2019/08/10]
 
 % --- Updated before 99th (Jan 2020) TRB meeting ---
 % Requirements not controled by commands:

@@ -32,9 +32,23 @@ This is a subsubsection example.
 \section{Titlepage}
 This template does not use the original command for titlepage (like \verb+\title+). Instead, it uses \verb+\trbtitle+. \textbf{You should capitalize initial letter of each word in the title manually} (and pay attention to `a', `an', `the', etc.), since this template doesn't automatically do the capitalization for you.
 
+\subsection{Authors}
 The titlepage is inserted by the command \verb+\maketitle+ (which has been redefined). Author names are in bold font (\verb+\authors+), followed by the affiliation of the author (\verb+\affils+), the city \& state with zipcode (\verb+\addresses+), and his/her email (\verb+\emails+). 
 
 To modify aforementioned informations in the titlepage, I suggest you to open \texttt{trbart.cls} file and search for ``trbtitle''. You will see all of their definitions there and then you can edit them accordingly. 
+
+\subsection{Word Count}
+This template cannot give any suggestion on counting word automatically while compiling. Users are expected to use external tools to count words in their project. 
+
+For offline LaTeX users, a simple way is to use the \texttt{texcount} CMD/Terminal command, which is already provided by the TeX Live distribution:
+\begin{verbatim}
+texcount example.tex -utf8 -inc -incbib -sum -1 
+\end{verbatim}
+This command will return the total number of words in the \texttt{example.tex} file, including words in all subfiles and the bibliography section.
+
+For online users, Overleaf also provides such feature. Users can open your project, click on the ``Menu'' and find a ``Word Count'' button there. As my personal experience, word count from Overleaf seems to be slightly lower than the number given by the \texttt{texcount} command.
+
+When complete word count, you can open the \texttt{trbart.cls} file to edit the number of words. And do not forget to count the number of your tables!
 
 
 \section{Equations}
