@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{trbart}[2019/08/10]
+\ProvidesClass{trbart}[2019/08/15]
 
 % --- Updated before 99th (Jan 2020) TRB meeting ---
 % Requirements not controled by commands:
@@ -70,11 +70,7 @@
 \RequirePackage{graphicx}
   \graphicspath{{./code/}, {./pics/}}
 
-% Preprint
-% \RequirePackage[blocks]{authblk}
-%   \renewcommand\Authfont{\raggedright\bfseries}
-%   \setlength{\affilsep}{0pt}
-
+% Preprint: titlepage & abstract
 % Definition:
 %   - title
 %   - authors, affiliations and emails
@@ -82,8 +78,7 @@
 \newcommand{\trbtitle}{%
   TRB Template: an Introduction of `trbart' Documentclass
 }
-\newcommand{\NumberAuthors}{3}
-
+\newcommand{\NumberAuthors}{3}  % Modify this if there are not 3 authors
 \RequirePackage{arrayjobx}
   \newarray\authors
   \readarray{authors}{wklchris&Author Null&Author Null}
@@ -100,7 +95,6 @@
   \linebreak%
   \multido{\i=1+1}{#1}{\mbox{}\linebreak}
 }
-
 \renewcommand{\maketitle}{
   \thispagestyle{empty}
   \begin{flushleft}
@@ -119,7 +113,8 @@
   \end{flushleft}
   \newpage
 }
-
+%% Abstract-related definitions
+\newcommand\trbkeywords[1]{\noindent\textbf{Keywords}:~#1\newpage}
 
 % Bibliography
 \RequirePackage[english]{babel}
@@ -130,16 +125,20 @@
   sorting=none,  % Sorted in citation order
   autocite=inline
 ]{biblatex}
-
-%% Type: article
-%% Remove quotation marks
-\DeclareFieldFormat[article]{title}{#1\isdot}
-%% Remove 'in:'
-\renewbibmacro{in:}{%
-  \ifentrytype{article}{}{\printtext{\bibstring{in}\intitlepunct}}}
-
 \addbibresource{refs.bib}
 
+%% BibLaTeX Configurations (based on 'numeric' bibstyle)
+%% Remove quotation marks (in 'title')
+\DeclareFieldFormat[article,inproceedings]{title}{#1\isdot}
+%% Remove 'in:' for articles and inproceedings
+\renewbibmacro{in:}{%
+  \ifboolexpr{%
+     test {\ifentrytype{article}}%
+     or
+     test {\ifentrytype{inproceedings}}%
+  }{}{\printtext{\bibstring{in}\intitlepunct}}%
+}
+%% Define a simple command to print bibliography
 \newcommand\printtrbrefs{
   \newpage\nolinenumbers%
   \printbibliography[title=REFERENCES]

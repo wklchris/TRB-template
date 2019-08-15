@@ -5,6 +5,12 @@
 \linenumbers%
 \maketitle
 
+\section{Abstract}
+
+This section is an abstract. No one would like to write an abstract for a \LaTeX\ template, but you have to write something if you are the author. To add an abstract, use normal \verb+\section+ command is fine. At the end of your abstract, please add a newparagraph with \verb+\trbkeywords{...}+ to show keywords.
+
+\trbkeywords{TRB, template, LaTeX, BibLaTeX}
+
 
 \section{Introduction}
 This documents is an example of the \texttt{trbart} class \LaTeX\ file maintained in \url{https://github.com/wklchris/TRB-template}. I would introduce main settings of the template through this document.
@@ -145,11 +151,11 @@ In this template, formats of bibliography items are similar to:
     \item[article] Last, First, Last, First, and Last, First. Title. \textit{Journaltitle}, year. Volume: doi or pagerange.
     \item[book] Authors. \textit{Title}. Publisher, year.
     \item[online] Authors. \textit{Title}. \texttt{URL}. Accessed July 1, 1900.
-    \item[inproceedings] Authors. Title. \texttt{Booktitle}. Location, year.
+    \item[inproceedings] Authors. Title. \textit{Booktitle}. Location, year.
     \item[thesis] Authors. \textit{Title}. Institution, year. 
 \end{description} 
 
-You can see the references list on the next page. The list is given by a introduced command named \verb+\printtrbrefs+.
+You can see the references list on the next page. The list is given by a stated command named \verb+\printtrbrefs+.
 
 % Reference
 \printtrbrefs%
