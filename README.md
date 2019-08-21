@@ -9,7 +9,7 @@ On using this template, you should be aware that the author of this template is 
 ## Dependencies
 
 - This template is for LaTeX users who have installed a TeX Distribution ([TeX Live](https://www.tug.org/texlive/) is recommended), or use an online LaTeX platform like [Overleaf](https://www.overleaf.com/);
-- XeLaTeX with Times New Roman font is the default setting (Overleaf also supports Times New Roman). If you prefer pdfLaTeX, please follow the comments in the class file (`trbart.cls`) to use `mathptmx` package and comment lines related to `fontspec`.
+- XeLaTeX with Times New Roman font is the default setting (Overleaf also supports Times New Roman);
 - For the bibliography part, `biblatex` package with `biber` backend is applied. There is no `BibTeX` requirement and nor is it used here.
 
 You can read the `trbart.cls` file thoroughly to check the packages required by this template. Users with TeX Live (>=2017) fully installed don't need to install anything more. Last, an alternative way to check the dependencies is to try to compile the `example.tex` file. 
@@ -26,7 +26,7 @@ As a quick guide, you may follow these steps to use this template:
     ```
     \documentclass[12pt]{trbart}
     ```
-2. **Titlepage**: For titles (`\trbtitle`), authors (`\authors`) and related informations (`affils`, `\addresses`, `\emails`) that should be shown on the titlepage, please search inside the `trbart.cls` file so that you can edit these accordingly. 
+2. **Titlepage**: For titles (`\trbtitle`), authors (`\authors`) and related informations (`affils`, `\addresses`, and `\emails`) that should be shown on the titlepage, please search inside the `trbart.cls` file so that you can edit these accordingly. 
 3. **Equations**: If you can, always use `equation` environment so that equations can be correctly numbered. For example, use `equation`-nested `aligned` environment instead of `align` environment. 
 4. **References**: For citations, you should use a `refs.bib` file with Biber-style keys. Then in the LaTeX file, you can use `\autocite` command to cite everything.
    - The main differenc between Biber-style and BibTeX-style is that the `journal` key is replaced by `journaltitle` key in the `@article` reference class.  
@@ -35,14 +35,14 @@ As a quick guide, you may follow these steps to use this template:
 
 ## Advanced guide
 
-If you have compiled the `example.tex` by XeLaTeX-Biber compile chain, you will get a PDF that introduces this template with more details. Or you can switch to [Releases page of this repo](https://github.com/wklchris/TRB-template/releases) to get the PDF (but possibly not in the latest version).
+If you have compiled the `example.tex` by XeLaTeX-Biber compile chain, you will get a PDF that introduces this template with more details (in English). Or you can switch to [Releases page of this repo](https://github.com/wklchris/TRB-template/releases) to get the PDF (but possibly not in the latest version).
 
-That document is designed for advanced users or developers. Even if you are not an experienced LaTeX user,you can still flip through it since it provides some examples that might help or inspire you.
+That PDF is designed for advanced users or developers. Even if you are not an experienced LaTeX user,you can still flip through it since it provides some examples that might help or inspire you.
 
 
 ## References
 
-Thanks to all guides that helped me on developing this template:
+Thanks to all guides that helped me on developing this template, especially:
 - biblatex:
   - [An example of customization of biblatex](https://tex.stackexchange.com/questions/386735/how-to-customize-biblatex-style)
   - [How to suppress "in:"](https://tex.stackexchange.com/questions/10682/suppress-in-biblatex)

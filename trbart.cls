@@ -21,11 +21,9 @@
   }
 
 % Font: Times Roman.
-%% For XeLaTeX users: install Times New Roman on your machine.
+%% Please install Times New Roman on your machine.
 \RequirePackage{fontspec}
   \setmainfont{Times New Roman}
-%% For pdfLaTeX users: use a Times font supported by mathptmx
-% \RequirePackage{mathptmx}
 
 % World count: 7500 max minus 250 for each table.
 
