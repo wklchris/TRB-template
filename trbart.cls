@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{trbart}[2019/08/15]
+\ProvidesClass{trbart}[2019/08/21]
 
 % --- Updated before 99th (Jan 2020) TRB meeting ---
 % Requirements not controled by commands:
@@ -107,7 +107,7 @@
     %% Word Counts & Submission date
     Word count: 7000 words + 2 tables (250 words per table) = 7500 words
     \emptyline[2]
-    \textit{Submitted August 1, 2000}
+    \textit{Submitted August, 2019}
   \end{flushleft}
   \newpage
 }
