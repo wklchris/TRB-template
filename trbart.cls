@@ -25,12 +25,12 @@
 \RequirePackage{fontspec}
   \setmainfont{Times New Roman}
 %% For pdfLaTeX users: use a Times font supported by mathptmx
-% \usepackage{mathptmx}
+% \RequirePackage{mathptmx}
 
 % World count: 7500 max minus 250 for each table.
 
 % Line numbers restart each page
-\usepackage[pagewise,mathlines]{lineno}
+\RequirePackage[pagewise,mathlines]{lineno}
   \renewcommand\linenumberfont{\normalfont\small}
 
 
@@ -87,7 +87,7 @@
   \newarray\addresses
   \readarray{addresses}{City, State Zipcode&City, State Zipcode&City, State Zipcode}
   \newarray\emails
-  \readarray{emails}{\email{wklchris@hotmail.com}&No Email&No Email}
+  \readarray{emails}{\email{wklchris:AT:hotmail.com}&No Email&No Email}
 
 %% Redefinition of \maketitle
 \RequirePackage{xparse, multido}
@@ -138,11 +138,32 @@
      test {\ifentrytype{inproceedings}}%
   }{}{\printtext{\bibstring{in}\intitlepunct}}%
 }
+%% Remove brackets around label numbers in the biblio list
+\DeclareFieldFormat{labelnumberwidth}{#1\adddot} 
+%% Redefine biblio list format: borrowed from numeric.bbx
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{labelprefix}%
+        \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      % Cancel left margin
+      \setlength{\leftmargin}{0pt}
+      % Set itemindent equal to hangindent to cancel hanging
+      \setlength{\itemindent}{\labelwidth}
+        \addtolength{\itemindent}{\labelsep}
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
 %% Define a simple command to print bibliography
 \newcommand\printtrbrefs{
   \newpage\nolinenumbers%
-  \printbibliography[title=REFERENCES]
+  \noindent\printbibliography[title=REFERENCES]
 }
+
 
 % --- User Customization ---
 \RequirePackage[fleqn]{amsmath}
@@ -169,7 +190,7 @@
   \newcommand\tbd[1]{\textcolor{red}{(#1)}}
 
 % Lists
-\usepackage[inline]{enumitem}
+\RequirePackage[inline]{enumitem}
     \renewcommand{\theenumi}{\arabic{enumi}}
     \renewcommand{\labelenumi}{\theenumi.}
     \setlist[enumerate]{label=(\arabic*),leftmargin=*,itemsep=5pt,parsep=0pt,topsep=1ex,partopsep=0pt,listparindent=0.8\parindent}
@@ -178,8 +199,8 @@
     \setlist[description]{font=\bfseries\ttfamily~,itemsep=5pt,parsep=0pt,topsep=1ex,partopsep=0pt}
 
 % Cross references & URLs
-% \usepackage[hyphens]{url}  % allow URL line breaks
-\usepackage[hidelinks]{hyperref}
+% \RequirePackage[hyphens]{url}  % allow URL line breaks
+\RequirePackage[hidelinks]{hyperref}
   \hypersetup{
     %pdfpagemode=UseNone,
     bookmarksopen = true, bookmarksnumbered = true,

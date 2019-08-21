@@ -2,7 +2,7 @@
 
 ~ English | [中文](https://github.com/wklchris/TRB-template/blob/master/readme/README-cn.md)
 
-This is a **third-party** LaTeX template for Transportation Research Board (TRB) submission, which was developed based on TRB's official requirements (see [Info for Authors](http://onlinepubs.trb.org/onlinepubs/AM/InfoForAuthors.pdf) and [Criteria for Desk Rejections](http://onlinepubs.trb.org/onlinepubs/TRREM/CriteriaforDeskRejections2019.pdf)). This project was established in 2019 and will be maintained until the author doesn't want to maintain. 
+This is a **unofficial** LaTeX template for Transportation Research Board (TRB) submission, which was developed based on TRB's official requirements (see [Info for Authors](http://onlinepubs.trb.org/onlinepubs/AM/InfoForAuthors.pdf) and [Criteria for Desk Rejections](http://onlinepubs.trb.org/onlinepubs/TRREM/CriteriaforDeskRejections2019.pdf)). This project was established in 2019 and will be maintained until the author doesn't want to maintain. 
 
 On using this template, you should be aware that the author of this template is NOT responsible for rejections of inappropriate formated docs due to users' misusage/mismodification of this template. Please double check your final format before your submission to TRB.
 
@@ -46,3 +46,4 @@ Thanks to all guides that helped me on developing this template:
 - biblatex:
   - [An example of customization of biblatex](https://tex.stackexchange.com/questions/386735/how-to-customize-biblatex-style)
   - [How to suppress "in:"](https://tex.stackexchange.com/questions/10682/suppress-in-biblatex)
+  - [Left margin alignment of biblatex bibliography list](https://tex.stackexchange.com/questions/47092/left-margin-alignment-of-biblatexs-bibliography-list)
