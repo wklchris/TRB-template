@@ -1,11 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{trbart}[2019/08/21]
+\ProvidesClass{trbart}[2020/07/16]
 
 % --- Updated before 99th (Jan 2020) TRB meeting ---
 % Requirements not controled by commands:
 % * Single spaced
 % * Abstract <= 250 words
 % * Figures <= 6
+\RequirePackage{expl3}
 
 % Doc class: fontsize>=10pt.
 \LoadClass[oneside, 12pt]{article}
@@ -121,7 +122,8 @@
   citestyle=numeric-comp,
   bibstyle=numeric,
   sorting=none,  % Sorted in citation order
-  autocite=inline
+  autocite=inline,
+  backend=bibtex  % bibtex is faster but lack some features compared to biber
 ]{biblatex}
 \addbibresource{refs.bib}
 
@@ -158,7 +160,7 @@
   {\item}
 %% Define a simple command to print bibliography
 \newcommand\printtrbrefs{
-  \newpage\nolinenumbers%
+  \clearpage\nolinenumbers%
   \noindent\printbibliography[title=REFERENCES]
 }
 
@@ -178,6 +180,28 @@
     {\linenomathWithnumbers\oldequation}
     {\oldendequation\endlinenomath}
   \makeatother
+
+\RequirePackage{amssymb}
+\ExplSyntaxOn
+\clist_gclear_new:N \g_capalph_clist
+\clist_gset:Nn \g_capalph_clist {
+  A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
+}
+\NewDocumentCommand{\defmathfonts}{m m o}{
+  \clist_clear_new:N \l_mfloop_clist
+  \IfNoValueTF{#3}{
+    \clist_set_eq:NN \l_mfloop_clist \g_capalph_clist
+  }{ \clist_set:Nn \l_mfloop_clist {#3} }
+  \clist_map_inline:Nn \l_mfloop_clist {
+    \cs_new_protected_nopar:cpn {#2} {#1{##1}}
+  }
+}
+\ExplSyntaxOff
+\defmathfonts{\mathbb}{mb#1}[C,N,Q,R,Z,E]
+\defmathfonts{\mathcal}{mc#1}
+\defmathfonts{\boldsymbol}{b#1}
+\defmathfonts{\boldsymbol}{b#1}[x,y,z]
+
 
 \RequirePackage{mathtools}
   \DeclarePairedDelimiter\ceil{\lceil}{\rceil}

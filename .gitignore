@@ -1,3 +1,28 @@
 *.pdf
-*.xml
+
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
 *.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
