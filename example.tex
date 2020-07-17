@@ -1,5 +1,19 @@
 \documentclass[12pt]{trbart}
 
+% Document Informations
+\trbtitle{TRB Unofficial Template: an Introduction of the `trbart' Documentclass}
+
+\trbauthor{wklchris,Author Null,Author Null}
+\trbaffil{Univ. Example,Univ. Null,Research Center Null}
+\trbaddress{{City, State Zipcode},{City, State Zipcode},{City, State Zipcode}}
+\trbemail{wklchris:AT:hotmail.com,No Email,No Email}
+
+\trbwordcount{2333}
+\trbtablecount{1}
+
+
+% --- Main ---
+
 \begin{document}
 
 \linenumbers%
@@ -7,7 +21,7 @@
 
 \section{Abstract}
 
-This section is an abstract. No one would like to write an abstract for a \LaTeX\ template, but you have to write something if you are the author. To add an abstract, use normal \verb+\section+ command is fine. At the end of your abstract, please add a newparagraph with \verb+\trbkeywords{...}+ to show keywords.
+This section is an abstract. No one would like to write an abstract for a \LaTeX\ template, but you have to write something if you are the author. To add an abstract, using normal \verb+\section+ command would be great. At the end of your abstract, please add a new paragraph (double press your Enter key) with \verb+\trbkeywords{...}+ to show keywords.
 
 \trbkeywords{TRB, template, LaTeX, BibLaTeX}
 
@@ -15,7 +29,7 @@ This section is an abstract. No one would like to write an abstract for a \LaTeX
 \section{Introduction}
 This documents is an example of the \texttt{trbart} class \LaTeX\ file maintained in \url{https://github.com/wklchris/TRB-template}. I would introduce main settings of the template through this document.
 
-This document is for developers (users do \textbf{NOT} need to read this document thoroughly, but you might find something valuable if you flip through it). If you are a user who doesn't care details at all, please refer to the ReadMe file as a quick guide.
+This document is for developers (users do \textbf{NOT} need to read this document thoroughly, but you might find something valuable if you flip through it). If you are a user who doesn't care details at all, please refer to the ReadMe file in the Github repository as a quick guide.
 
 
 \section{Outline Formats}
@@ -36,12 +50,23 @@ This is a subsubsection example.
 
 
 \section{Titlepage}
-This template does not use the original command for titlepage (like \verb+\title+). Instead, it uses \verb+\trbtitle+. \textbf{You should capitalize initial letter of each word in the title manually} (and pay attention to `a', `an', `the', etc.), since this template doesn't automatically do the capitalization for you.
+This template does not use the original command for titlepage (like \verb+\title+). Instead, it uses \verb+\trbtitle+. 
+\begin{verbatim}
+\trbtitle{TRB Unofficial Template: an Introduction of the `trbart' Documentclass}
+\end{verbatim}
+
+\textbf{You should capitalize initial letter of each word in the title manually} (and pay attention to `a', `an', `the', etc.), since this template doesn't automatically do the capitalization for you.
 
 \subsection{Authors}
-The titlepage is inserted by the command \verb+\maketitle+ (which has been redefined). Author names are in bold font (\verb+\authors+), followed by the affiliation of the author (\verb+\affils+), the city \& state with zipcode (\verb+\addresses+), and his/her email (\verb+\emails+). 
+The titlepage is inserted by the command \verb+\maketitle+ (which has been redefined). Author names are in bold font (\verb+\trbauthor+), followed by the affiliation of the author (\verb+\trbaffil+), the city \& state with zipcode (\verb+\trbaddress+), and his/her email (\verb+\trbemail+). 
 
-To modify aforementioned informations in the titlepage, I suggest you to open \texttt{trbart.cls} file and search for ``trbtitle''. You will see all of their definitions there and then you can edit them accordingly. 
+You can modify your author informations in the preamble (i.e.~before the \verb+\begin{documnet}+). This guide uses:
+\begin{verbatim}
+\trbauthor{wklchris,Author Null,Author Null}
+\trbaffil{Univ. Example,Univ. Null,Research Center Null}
+\trbaddress{{City, State Zipcode},{City, State Zipcode},{City, State Zipcode}}
+\trbemail{wklchris:AT:hotmail.com,No Email,No Email}
+\end{verbatim}
 
 \subsection{Word Count}
 This template cannot give any suggestion on counting word automatically while compiling. Users are expected to use external tools to count words in their project. 
@@ -54,11 +79,18 @@ This command will return the total number of words in the \texttt{example.tex} f
 
 For online users, Overleaf also provides such feature. Users can open your project, click on the ``Menu'' and find a ``Word Count'' button there. As my personal experience, word count from Overleaf seems to be slightly lower than the number given by the \texttt{texcount} command.
 
-When complete word count, you can open the \texttt{trbart.cls} file to edit the number of words. And do not forget to count the number of your tables!
+When complete word counting, you can inputs the word count (and table count) by somthing like
+\begin{verbatim}
+\trbwordcount{2333}
+\trbtablecount{1}
+\end{verbatim}
+And the template would compute the total words for you. These information would be included at the end of the titlepage.
 
 
 \section{Equations}
-Equations are left-aligned and counted towards line numbers. This style is achieved by \texttt{fleqn} option of the \texttt{amsmath} package with \verb+\mathindent+ set to zero. Please use \texttt{equation} environment to write equations so that they can be correctly linenumbered --- I only configured the compatiblity between this environment and the \texttt{fleqn} option. Let's try a well-known theorem:
+Equations are left-aligned and counted towards line numbers. This style is achieved by \texttt{fleqn} option of the \texttt{amsmath} package with \verb+\mathindent+ set to zero. 
+
+Let's try a well-known theorem:
 \begin{equation}\label{eq:triangle}
     a^2 + b^2 = c^2
 \end{equation}
@@ -72,7 +104,38 @@ Here is a more complicated example. Though there are two lines, but the this equ
 \end{dcases} 
 \end{equation}
 
+Please always use \texttt{equation} environment to write equations so that they can be correctly linenumbered. For example, instead of using \verb+\begin{align}+, use
+\begin{verbatim}
+\begin{equation}
+\begin{aligned}
+    ...
+\end{aligned}
+\end{equation}
+\end{verbatim}
+
 The citation style of equations (\autoref{eq:triangle} and \autoref{eq:exp}) are bold with the default color.
+
+\subsection{Customized Math Shorcuts*}
+I defined a list of Math shorcuts for simplicity.
+\begin{verbatim}
+% The set of natural numbers, etc.
+\mb[C,N,Q,R,Z,E] --> \mbC = \mathbb{C}
+% Math-RSFS fonts of all capitalized letters. For algebra usage.
+\mc[A,B,...,Z]  --> \mcA = \mathscr{A}
+% Bold symbols of letters. For matrix/vector notation.
+\b[A,B,...,Z]  --> \bA = \boldsymbol{A}
+\b[i,j,k,u,v,x,y,z] --> \bi = \boldsymbol{i}
+\end{verbatim}
+
+In case you forget these symbols, here is an example:
+\begin{equation}
+\begin{aligned}
+x\in\mbN &\qquad\text{x is a natural number} \\
+\mrA &\qquad\text{A is a linear transformation} \\
+\bA\bx = \by &\qquad\text{Linear equations Ax=y}
+\end{aligned}
+\end{equation}
+
 
 \section{Floatings: Figures and Tables}
 There is nothing special for figures. \autoref{fig:longtitle} is an example of a figure with a long title.
@@ -88,10 +151,13 @@ The \LaTeX\ code of \autoref{tab:shorttitle} is shown below:
 \begin{verbatim}
 \begin{table}[!hbt]
 \centering
-\caption{A table with bold and center-aligned headers}
+\caption{
+  A table with bold and center-aligned headers
+  powered by the \texttt{tabularx} package
+}
 \label{tab:shorttitle}
 %\newcolumntype{E}{>{\raggedleft\arraybackslash}X}
-\begin{tabularx}{0.5\textwidth}{crEE}
+\begin{tabularx}{0.8\textwidth}{crEE}
     \toprule
     \multirowthead{2}{Obs} & \multirowthead{2}{Attr 1} &
     \multicolumn{2}{c}{\thead{Attr 2}} \\
@@ -107,8 +173,9 @@ The \LaTeX\ code of \autoref{tab:shorttitle} is shown below:
 
 \begin{table}[!hbt]
     \centering
-    \caption{A table with bold and center-aligned headers}\label{tab:shorttitle}
-    \begin{tabularx}{0.5\textwidth}{crEE}
+    \caption{A table with bold and center-aligned headers powered by the \texttt{tabularx} package}
+    \label{tab:shorttitle}
+    \begin{tabularx}{0.8\textwidth}{crEE}
         \toprule
         \multirowthead{2}{Obs} & \multirowthead{2}{Attr 1} & \multicolumn{2}{c}{\thead{Attr 2}} \\
         \cmidrule(lr){3-4}
@@ -122,10 +189,16 @@ The \LaTeX\ code of \autoref{tab:shorttitle} is shown below:
 
 We can refer to equations or floatings using \verb+\autoref+ commands, showing as \autoref{eq:exp}, \autoref{fig:longtitle} and \autoref{tab:shorttitle}. The bold format is achieved because the \verb+\autoref+ command has been redefined in the template.
 
-\section{References Section}
-Different with normal settings, this template requires \texttt{biblatex} package with Biber backend, while a large amount of users are using BibTeX backend. These two approaches both accept \texttt{.bib} file as the references source, but with some differences in entry (key) names of some references type. For example, the biblatex package uses \texttt{journaltitle} for \texttt{\@article} type, instead of BibTeX's \texttt{journal}. 
 
-Here is a simple table showing the entry types that works with biblatex package (\autoref{tab:shorttitle}). This time, the table is included with the default \texttt{tabular} environment, but not \texttt{tabularx}.
+\section{References Section}
+This template requires \texttt{biblatex} package with Biber/BibTeX backend. Both Biber and BibTeX approaches accept \texttt{.bib} files as the references source, but with some differences in entry (key) names of some references type. For example, Biber uses \texttt{journaltitle} for the \texttt{\@article} type, instead of BibTeX's \texttt{journal}. 
+
+In the loading options of the \texttt{biblatex} package, you can choose which backend to use:
+\begin{verbatim}
+\RequirePackage[..., backend=bibtex]{biblatex}
+\end{verbatim}
+
+Here is a simple table showing the entry types that works with biblatex package (\autoref{tab:shorttitle}). 
 \begin{table}[!hbt]
     \centering
     \caption{Common entry types in biblatex's bib files}\label{tab:bib}
@@ -144,7 +217,7 @@ Here is a simple table showing the entry types that works with biblatex package 
     \end{tabular}
 \end{table}
 
-The references section starts from a new page. TRB allows numeric citation or Harvard style citation. This article goes with a numeric citation style with round brackets. For example, here I cite an article~\autocite{egarticle}, a book~\autocite{egbook}, and a conference article~\autocite{egconference}. Sometimes we also cite online files~\autocite{egonline}. 
+The references section starts from a new page. TRB allows numeric citation or Harvard style citation by the \verb+\autocite+ command. This article goes with a numeric citation style with round brackets. For example, here I cite an article~\autocite{egarticle}, a book~\autocite{egbook}, and a conference article~\autocite{egconference}. Sometimes we also cite online files~\autocite{egonline}. 
 
 In this template, formats of bibliography items are similar to:
 \begin{description}
@@ -155,7 +228,12 @@ In this template, formats of bibliography items are similar to:
     \item[thesis] Authors. \textit{Title}. Institution, year. 
 \end{description} 
 
-You can see the references list on the next page. The list is given by a stated command named \verb+\printtrbrefs+.
+You can see the references list on the next page. The list is given by a template-defined command:
+\begin{verbatim}
+\printtrbrefs
+\end{verbatim}
+
+This \verb+\printtrbrefs+ command would clear the floating queue first (to ensure all figures and tables are put before the bibliography list), then terminate the line numbering, and finally output the bibliography list.
 
 % Reference
 \printtrbrefs%

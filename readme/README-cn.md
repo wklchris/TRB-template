@@ -1,6 +1,6 @@
 # 'trbart': 一个非官方的 TRB 投稿 LaTeX 模板
 
-~ [English](https://github.com/wklchris/TRB-template/blob/master/README.md) | 中文
+~ [English](../README.md) | 中文
 
 这是一个 **非官方** 的 Transportation Research Board (TRB) 论文 LaTeX 模板，根据 TRB 官方给出的要求（参考 [Info for Authors](http://onlinepubs.trb.org/onlinepubs/AM/InfoForAuthors.pdf) 与 [Criteria for Desk Rejections](http://onlinepubs.trb.org/onlinepubs/TRREM/CriteriaforDeskRejections2019.pdf) 页面）制作而成。本项目在 2019 年启动，并将会一直被维护直到作者不再想维护为止。
 
@@ -10,33 +10,64 @@
 
 - 本模板是为安装有本地 TeX 发行版（推荐使用 [TeX Live](https://www.tug.org/texlive/)）或使用类似 [Overleaf](https://www.overleaf.com/) 在线 LaTeX 平台的用户而撰写的；
 - XeLaTeX 与 Times New Roman 字体是本模板的缺省设置（Overleaf 也支持 Times New Roman）；
-- 对参考文献部分，本模板使用了宏包 `biblatex` 与后端 `biber`。本模板不需要 `BibTeX` 组件，也并不会用到它。
+- 对参考文献部分，本模板使用了宏包 `biblatex`。你可以选择使用 Bibtex 后端（默认）或者 Biber 后端。
 
 您可以完整地阅读 `trbart.cls` 文件来检查哪些宏包是为此模板所需的。完整安装了 TeX Live (>=2017) 的用户不需要安装任何额外的组件。最后指出，另一种检查依赖项的方式是尝试编译 `example.tex` 文档。
 
 ## 快速用户指南：如何使用
 
-您可以按照下述步骤来使用本模板：
+在开始试用模板前，建议阅读“快速用户指南”（本节）的全部内容。
 
-1. **文档类**：将 `trbart.cls` 文件下载到您 LaTeX 项目的主目录中，然后在您而主 LaTeX 文件中使用 `trbart` 作为文档类：
+### 复制基础文件
+
+请依照以下步骤开始使用本模板：
+1. 为你的 LaTeX 项目创建一个文件夹。如果你使用 Overleaf，创建一个新项目。
+2. 下载（或复制内容）文档类文件 `trbart.cls` 与空白模板 `blank.tex`（在[此处](./blank.tex)查看）。创建一个名为 `refs.bib` 的文件。
+3. 将 `blank.tex` 重命名为你喜爱的名称。开始写作吧！
+4. 在编译 pdf 之前，确认你配置了 `XeLaTeX` 作为编译器 (对于Overleaf 用户，菜单中有一个选择编译器的下拉选项)。
+5. （高级功能） 虽然默认的文献后端是 `BibTeX`，你也可以切换成 `Biber`。 
+   <details><summary>点击以展开/折叠关于 BibTeX/Biber 文献后端的更多信息</summary>
+
+   你可以通过更改 `trbart.cls` 文件中以下行来切换为 Biber 后端:
+   ```tex
+   \RequirePackage[..., backend=biber]{biblatex}
    ```
-   \documentclass{trbart}
-   ```
-   您可以向它传递参数，例如字号：
-   ```
-   \documentclass[12pt]{trbart}
-   ```
-2. **标题页**：对于应显示在标题页中的标题（`\trbtitle`）、作者（`\authors`）与其他相关信息（`affils`, `\addresses` 与 `\emails`），请在 `trbart.cls` 文件中搜索对应命令以便能够更改。
-3. **公式**：请尽可能地使用 `equation` 环境，以便所有公式都能被正常编号。例如，不使用 `align` 环境，而是使用嵌套在 `equation` 环境内的 `aligned` 环境。
-4. **参考文献**：您需要使用一个名为 `refs.bib` 的文件来作为参考文献文件，且应使用 Biber 风格的键名。然后您可以在 LaTeX 文档中利用 `\autocite` 公式来引用文献。
-   - Biber 风格与 BibTeX 风格的主要区别是： `@article` 文献类中的 `journal` 键被更改为了 `journaltitle` 键。
-   - 我个人的建议是，您可以复制 BibTeX 风格的条目（学术引擎如 Google 学术常常会提供这种），然后将 `@article` 文献类下的所有 `jounral=` 都替换为 `journaltitle=`。
-5. **编译**：本模板是在 XeLaTeX 下测试通过的，因此我也建议您使用 XeLaTeX 来编译该文档。您可能需要一个 `XeLaTeX -> Biber -> XeLaTeX -> XeLaTeX` 编译链来实现这一点。关于如何在编辑器中配置该编译链，这里有一篇不可错过的实用链接：[StackExchange - Configuring my editor to avoid undefined citations](https://tex.stackexchange.com/questions/154751/biblatex-with-biber-configuring-my-editor-to-avoid-undefined-citations)。
+   - I如果你选择 Biber 后端，请将 `refs.bib` 文件中所有 `@article` 类型下的 `title=` 键都重命名为 `journaltitle=`。
+   - 如果你在转向 Biber 的过程中出现了配置问题，这里有一个实用链接：[StackExchange - Configuring my editor to avoid undefined citations](https://tex.stackexchange.com/questions/154751/biblatex-with-biber-configuring-my-editor-to-avoid-undefined-citations).
+   </details>
+
+### 命令列表
+
+这里列出了一个该模板提供的命令列表。只有与原生 LaTeX 用法不同的命令才在此处列出。
+
+| 命令 | 描述 | 用例 |
+| :--- | :--- | :--- |
+| **导言区** |||
+| `\trbtitle` | 文档标题 | `\trbtitle{Capitalized Title}` |
+| `\trbauthor` | 逗号分隔的作者列表 | `\trbauthor{Tom Joe,Mo Lee}` |
+| `\trbaffil` | 逗号分隔的机构列表 | `\trbaffil{Univ A,Univ B}` |
+| `\trbaddress` | 逗号分隔的地址列表 | `\trbaddress{{City, State},{C, S}}` |
+| `\trbemail` | 逗号分隔的邮件列表 | `\trbemail{a@eg.com,b@eg.net}` |
+| `\trbwordcount` | 除表格外的全文字数 | `\trbwordcount{5000}` |
+| `\trbtablecount` | 全文表格数量 | `\trbtablecount{3}` |
+| **摘要** |||
+| `\trbkeywords` | 逗号分隔的关键字 | `\trbkeywords{Traffic Flow,Transp}` |
+| **数学环境**<sup>†</sup> |||
+| `\mc[A-Z]` | 一组代数简便命令 | `\mcA`（即 `\mathscr{A}`） |
+| `\mb[C,N,Q,R,Z,E]` | 一组数集简便命令 | `\mbN`（即 `\mathbb{N}`） |
+| `\b[A-Z]` | 一组矩阵符号简便命令 | `\bA`（即 `\boldsymbol{A}`） |
+| `\b[i,j,k,u,v,x,y,z]` | 一组向量符号简便命令 | `\bx`（即 `\boldsymbol{x}`） |
+| **参考文献** |||
+| `\printtrbrefs`| 输出参考文献列表 | `\printtrbrefs` |
+| **杂项** |||
+| `\tbd` | 一个简易的注释命令 | `\tbd{Comment here}` | 
+
+<sup>†</sup> *在本模板下的数学环境中，**强烈推荐使用 {equation} 环境**。因为针对行号功能，该环境被特殊处理过。例如，请在可以使用 {align} 环境的场合，改用 {equation}-{aligned} 这种嵌套环境。*
 
 
 ## 高级指南
 
-如果您已经用 XeLaTeX-Biber 链来编译了 `example.tex` 文件，您会得到一个更详细介绍了该模板的 PDF 文件（英文）。或者，您也可以前往 [Release 页面](https://github.com/wklchris/TRB-template/releases) 来获取该 PDF （但这样得到的或许不是最新版）。
+如果您已经用 XeLaTeX-Biber/BibTeX 链来编译了 `example.tex` 文件，您会得到一个更详细介绍了该模板的 PDF 文件（英文）。或者，您也可以前往 [Release 页面](https://github.com/wklchris/TRB-template/releases) 来获取该 PDF （但这样得到的或许不是最新版）。
 
 这个 PDF 是为了高级用户或者开发者准备的。即便您不是一个资深的 LaTeX 用户，您仍然可以快速地翻阅一下它——因为它提供了可能会帮助或启发您的一些用法示例。
 

@@ -74,44 +74,54 @@
 %   - title
 %   - authors, affiliations and emails
 \newcommand\email[1]{\href{mailto:#1}{#1}}
-\newcommand{\trbtitle}{%
-  TRB Template: an Introduction of `trbart' Documentclass
+\ExplSyntaxOn%
+%% Define the artitle title
+\str_gclear:N \g_title_str
+\NewDocumentCommand{\trbtitle}{m}{
+  \str_gset:Nn \g_title_str {#1}
 }
-\newcommand{\NumberAuthors}{3}  % Modify this if there are not 3 authors
-\RequirePackage{arrayjobx}
-  \newarray\authors
-  \readarray{authors}{wklchris&Author Null&Author Null}
-  \newarray\affils
-  \readarray{affils}{Univ. Example&Univ. Null&Research Center Null}
-  \newarray\addresses
-  \readarray{addresses}{City, State Zipcode&City, State Zipcode&City, State Zipcode}
-  \newarray\emails
-  \readarray{emails}{\email{wklchris:AT:hotmail.com}&No Email&No Email}
+
+%% Define word and table count.
+%% The total words will be computed automatically.
+\clist_map_inline:nn {word,table} {
+  \int_new:c {g_#1_int}
+  \cs_gset:cpn {trb#1count} ##1 {
+    \int_set:cn {g_#1_int} {##1}
+  }
+}
+
+%% Define a list of \trb* functions
+\clist_map_inline:nn {author,affil,address,email} {
+  \clist_gclear_new:c {g_#1_clist}
+  \cs_gset:cpn {trb#1} ##1 {
+    \clist_gset:cn {g_#1_clist} {##1}
+  }
+}
 
 %% Redefinition of \maketitle
-\RequirePackage{xparse, multido}
-\NewDocumentCommand{\emptyline}{ O{1} }{%
-  \linebreak%
-  \multido{\i=1+1}{#1}{\mbox{}\linebreak}
-}
-\renewcommand{\maketitle}{
+\DeclareDocumentCommand{\maketitle}{}{
   \thispagestyle{empty}
+  \int_new:N \l_author_num_int
+  \int_set:Nn \l_author_num_int {
+    \clist_count:N \g_author_clist
+  }
+  \int_set:Nn \l_tmpa_int { 1 }
   \begin{flushleft}
-    \textbf{\trbtitle}\emptyline[2]
-    %% Insert Authors
-    \multido{\iAuthor=1+1}{\NumberAuthors}{%
-      \textbf{\authors(\iAuthor)}\\
-      \affils(\iAuthor)\\
-      \addresses(\iAuthor)\\
-      \emails(\iAuthor)\emptyline
-    }
-    %% Word Counts & Submission date
-    Word count: 7000 words + 2 tables (250 words per table) = 7500 words
-    \emptyline[2]
-    \textit{Submitted August, 2019}
+  \textbf{\str_use:N \g_title_str}\linebreak\mbox{}\linebreak
+  \int_do_while:nn { \l_tmpa_int <= \l_author_num_int } {
+    \textbf{\clist_item:Nn \g_author_clist {\l_tmpa_int}}\linebreak
+    \clist_item:Nn \g_affil_clist {\l_tmpa_int}\linebreak
+    \clist_item:Nn \g_address_clist {\l_tmpa_int}\linebreak
+    \email{\clist_item:Nn \g_email_clist {\l_tmpa_int}}
+    \linebreak\mbox{}\linebreak
+    \int_incr:N \l_tmpa_int
+  }
+  %% Word Counts & Submission date
+  Word~count:~{\int_use:N \g_word_int}~words~+~{\int_use:N \g_table_int}~tables~(250~words~per~table)~=~{\int_eval:n {\g_word_int + \g_table_int*250}}~words
   \end{flushleft}
   \newpage
 }
+\ExplSyntaxOff%
 %% Abstract-related definitions
 \newcommand\trbkeywords[1]{\noindent\textbf{Keywords}:~#1\newpage}
 
@@ -181,6 +191,7 @@
     {\oldendequation\endlinenomath}
   \makeatother
 
+\RequirePackage{mathrsfs}
 \RequirePackage{amssymb}
 \ExplSyntaxOn
 \clist_gclear_new:N \g_capalph_clist
@@ -198,9 +209,9 @@
 }
 \ExplSyntaxOff
 \defmathfonts{\mathbb}{mb#1}[C,N,Q,R,Z,E]
-\defmathfonts{\mathcal}{mc#1}
+\defmathfonts{\mathscr}{mr#1}
 \defmathfonts{\boldsymbol}{b#1}
-\defmathfonts{\boldsymbol}{b#1}[x,y,z]
+\defmathfonts{\boldsymbol}{b#1}[i,j,k,u,v,x,y,z]
 
 
 \RequirePackage{mathtools}
