@@ -6,13 +6,19 @@
 % * Single spaced
 % * Abstract <= 250 words
 % * Figures <= 6
-\RequirePackage{expl3}
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+   family=trbart,
+   prefix=trbart@
+}
+\DeclareBoolOption[true]{numericbib}
+\DeclareComplementaryOption{authoryearbib}{numericbib}
 
 % Doc class: fontsize>=10pt.
-\LoadClass[oneside, 12pt]{article}
-\DeclareOption{twosides}{\OptionNotUsed}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ProcessOptions\relax
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
+%% Use \ProcessOptions\relax if no 'kvoptions' pkg
+\ProcessKeyvalOptions*
+\LoadClass[10pt]{article}
 
 % Layout: 8.5x11 inch, normal margin.
 \RequirePackage{geometry}
@@ -74,6 +80,7 @@
 %   - title
 %   - authors, affiliations and emails
 \newcommand\email[1]{\href{mailto:#1}{#1}}
+\RequirePackage{expl3}
 \ExplSyntaxOn%
 %% Define the artitle title
 \str_gclear:N \g_title_str
@@ -126,18 +133,16 @@
 \newcommand\trbkeywords[1]{\noindent\textbf{Keywords}:~#1\newpage}
 
 % Bibliography
+%%   TRB draft must use numeric style.
 \RequirePackage[english]{babel}
 \RequirePackage{csquotes}
-\RequirePackage[
-  citestyle=numeric-comp,
-  bibstyle=numeric,
-  sorting=none,  % Sorted in citation order
-  autocite=inline,
-  backend=bibtex  % bibtex is faster but lack some features compared to biber
-]{biblatex}
+\iftrbart@numericbib
+  \input{trb-numeric}
+\else
+  \input{trb-authoryear}
+\fi
 \addbibresource{refs.bib}
 
-%% BibLaTeX Configurations (based on 'numeric' bibstyle)
 %% Remove quotation marks (in 'title')
 \DeclareFieldFormat[article,inproceedings]{title}{#1\isdot}
 %% Remove 'in:' for articles and inproceedings
@@ -150,24 +155,6 @@
 }
 %% Remove brackets around label numbers in the biblio list
 \DeclareFieldFormat{labelnumberwidth}{#1\adddot} 
-%% Redefine biblio list format: borrowed from numeric.bbx
-\defbibenvironment{bibliography}
-  {\list
-     {\printtext[labelnumberwidth]{%
-        \printfield{labelprefix}%
-        \printfield{labelnumber}}}
-     {\setlength{\labelwidth}{\labelnumberwidth}%
-      \setlength{\labelsep}{\biblabelsep}%
-      % Cancel left margin
-      \setlength{\leftmargin}{0pt}
-      % Set itemindent equal to hangindent to cancel hanging
-      \setlength{\itemindent}{\labelwidth}
-        \addtolength{\itemindent}{\labelsep}
-      \setlength{\itemsep}{\bibitemsep}%
-      \setlength{\parsep}{\bibparsep}}%
-      \renewcommand*{\makelabel}[1]{\hss##1}}
-  {\endlist}
-  {\item}
 %% Define a simple command to print bibliography
 \newcommand\printtrbrefs{
   \clearpage\nolinenumbers%

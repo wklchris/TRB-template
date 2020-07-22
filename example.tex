@@ -217,7 +217,9 @@ Here is a simple table showing the entry types that works with biblatex package 
     \end{tabular}
 \end{table}
 
-The references section starts from a new page. TRB allows numeric citation or Harvard style citation by the \verb+\autocite+ command. This article goes with a numeric citation style with round brackets. For example, here I cite an article~\autocite{egarticle}, a book~\autocite{egbook}, and a conference article~\autocite{egconference}. Sometimes we also cite online files~\autocite{egonline}. 
+The references section starts from a new page. TRB allows numeric citation or Harvard style citation by the \verb+\autocite+ command. This article goes with a numeric citation style with round brackets. For example, here I cite three articles~\autocite{egarticle, egarticle2, egarticle3}, a book~\autocite{egbook}, and a conference article~\autocite{egconference}. Sometimes we also cite online files~\autocite{egonline}. 
+
+Note that if a citation is part of your sentence, use \verb+\textcite+ instead of \verb+\autocite+. For example, \textcite{egarticle, egarticle2, egarticle3, egbook, egconference, egarticle4} proposed an improved model. Note the places of parentheses have changed compared with a model proposed in \autocite{egarticle, egarticle2, egarticle3, egbook, egconference, egarticle4}.
 
 In this template, formats of bibliography items are similar to:
 \begin{description}

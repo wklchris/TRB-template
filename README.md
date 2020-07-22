@@ -30,8 +30,12 @@ It's recommended to read through this quick guide before trying out the template
 
 To start with this template, you may follow these steps:
 1. Create a folder for your LaTeX project. If you are using Overleaf, create a new project.
-2. Download (or copy the content of) the document class file `trbart.cls` and the blank template `blank.tex` (see it [here](./blank.tex)). Create a new bib file called `refs.bib`.
-3. Rename the `blank.tex` to whatever you like. Start writing!
+2. Prepare following files:
+   - Download the document class file `trbart.cls`.
+   - Download the blank template `blank.tex`. 
+   - Download the citation and bibliography style file `trb-authoryear.tex` and `trb-numeric.tex`.
+   - Create a new bib file called `refs.bib` for your bibliography entries.
+3. Rename the `blank.tex` to whatever you like. Then start writing!
 4. Make sure you are using the `XeLaTeX` compiler (In Overleaf, there is a dropdown menu for compliers) before building the pdf.
 5. (Advanced option) Though the default backend is Bibtex, you can switch it to Biber. 
    <details><summary>Click to show/hide details of the BibTeX/Biber reference backend</summary>
@@ -44,13 +48,16 @@ To start with this template, you may follow these steps:
    - If you have configuration troubles switching to Biber backend, here is a useful link: [StackExchange - Configuring my editor to avoid undefined citations](https://tex.stackexchange.com/questions/154751/biblatex-with-biber-configuring-my-editor-to-avoid-undefined-citations).
    </details>
 
-
 ### List of commands
 
 Here is the list of commands provided by this template. Only commands of different usage with the original LaTeX writing are listed.
 
 | Commands | Description | Example |
 | :--- | :--- | :--- |
+| **Doc Options** |||
+| `authoryearbib` | Use a customized authoryear style for bib | `\documentclass[authoryearbib]{trbart}` |
+| `numericbib` | (Default, **Required in TRB draft**) Use the customized numeric style for bib | `\documentclass[numericbib]{trbart}` |
+| `<article options>` | Options that works for the traditional `article` doc class | `\documentclass[12pt]{article}` |
 | **Preamble** |||
 | `\trbtitle` | The title of the doc | `\trbtitle{Capitalized Title}` |
 | `\trbauthor` | A comma-seperated list of authors | `\trbauthor{Tom Joe,Mo Lee}` |
@@ -87,3 +94,4 @@ Thanks to all guides that helped me on developing this template, especially:
   - [An example of customization of biblatex](https://tex.stackexchange.com/questions/386735/how-to-customize-biblatex-style)
   - [How to suppress "in:"](https://tex.stackexchange.com/questions/10682/suppress-in-biblatex)
   - [Left margin alignment of biblatex bibliography list](https://tex.stackexchange.com/questions/47092/left-margin-alignment-of-biblatexs-bibliography-list)
+  - [Replace square with round brackets in both citations and bibliography](https://tex.stackexchange.com/a/341043/116054)

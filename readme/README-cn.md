@@ -30,7 +30,11 @@
 
 请依照以下步骤开始使用本模板：
 1. 为你的 LaTeX 项目创建一个文件夹。如果你使用 Overleaf，创建一个新项目。
-2. 下载（或复制内容）文档类文件 `trbart.cls` 与空白模板 `blank.tex`（在[此处](./blank.tex)查看）。创建一个名为 `refs.bib` 的文件。
+2. 准备以下文件：
+   - 下载文档类文件 `trbart.cls`.
+   - 下载空白模板文件 `blank.tex`. 
+   - 下载引用与文献格式文件 `trb-authoryear.tex` 与 `trb-numeric.tex`.
+   - 新建一个 `refs.bib` 文件来存放参考文献。
 3. 将 `blank.tex` 重命名为你喜爱的名称。开始写作吧！
 4. 在编译 pdf 之前，确认你配置了 `XeLaTeX` 作为编译器 (对于Overleaf 用户，菜单中有一个选择编译器的下拉选项)。
 5. （高级功能） 虽然默认的文献后端是 `BibTeX`，你也可以切换成 `Biber`。 
@@ -50,6 +54,10 @@
 
 | 命令 | 描述 | 用例 |
 | :--- | :--- | :--- |
+| **文档选项** |||
+| `authoryearbib` | 使用自定义的 authoryear 引用格式 | `\documentclass[authoryearbib]{trbart}` |
+| `numericbib` | （默认，**TRB送审稿件要求**）使用自定义的 numeric 引用格式 | `\documentclass[numericbib]{trbart}` |
+| `<article options>` | 原 `article` 文档类可接受的选项 | `\documentclass[12pt]{article}` |
 | **导言区** |||
 | `\trbtitle` | 文档标题 | `\trbtitle{Capitalized Title}` |
 | `\trbauthor` | 逗号分隔的作者列表 | `\trbauthor{Tom Joe,Mo Lee}` |
@@ -87,3 +95,4 @@
   - [An example of customization of biblatex](https://tex.stackexchange.com/questions/386735/how-to-customize-biblatex-style)
   - [How to suppress "in:"](https://tex.stackexchange.com/questions/10682/suppress-in-biblatex)
   - [Left margin alignment of biblatex bibliography list](https://tex.stackexchange.com/questions/47092/left-margin-alignment-of-biblatexs-bibliography-list)
+  - [Replace square with round brackets in both citations and bibliography](https://tex.stackexchange.com/a/341043/116054)

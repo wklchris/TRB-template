@@ -1,0 +1,22 @@
+%% If using Harvard Style, alphabetical by author last name
+\RequirePackage[
+    citestyle=numeric-comp,
+    bibstyle=authoryear,
+    sorting=nyt,
+    autocite=inline,
+    backend=bibtex
+]{biblatex}
+
+% BibLaTeX Configurations (based on 'authoryear' bibstyle)
+%% Redefine biblio list format: borrowed from authoryear.bbx
+\defbibenvironment{bibliography}
+  {\list
+     {}
+     {% Set the hanging indent of each entry 
+      \setlength{\bibhang}{2em}
+      \setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}

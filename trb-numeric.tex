@@ -1,0 +1,78 @@
+\RequirePackage[
+    citestyle=numeric-comp,
+    bibstyle=numeric,
+    sorting=none,  % Sorted in citation order
+    autocite=inline,
+    backend=bibtex
+]{biblatex}
+
+% Change citation's brackets to parentheses: borrowed from numeric-comp.cbx
+%% 1. Change \mkbibbrackets to \mkbibparens
+%% 2. Add \mkbibemph for slant numbers
+\DeclareCiteCommand{\cite}[\mkbibparens]
+  {\mkbibemph{\usebibmacro{cite:init}}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \mkbibemph{\usebibmacro{cite:comp}}}
+  {}
+  {\mkbibemph{\usebibmacro{cite:dump}}%
+   \usebibmacro{postnote}}
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+  {\mkbibemph{\usebibmacro{cite:init}}%
+  \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \mkbibemph{\usebibmacro{cite:comp}}}
+  {}
+  {\mkbibemph{\usebibmacro{cite:dump}}%
+  \usebibmacro{postnote}}
+\DeclareMultiCiteCommand{\cites}[\mkbibbrackets]{\cite}{\multicitedelim}
+\DeclareMultiCiteCommand{\parencites}[\mkbibbrackets]{\parencite}{\multicitedelim}
+%% Update \autocite after redefining \cite and \parencite
+\DeclareAutoCiteCommand{plain}{\cite}{\cites}
+\DeclareAutoCiteCommand{inline}{\parencite}{\parencites}
+
+% Redefine textcite for parentheses instead of brackets around year
+%% 1. Change \bibopen[close]bracket to \...paren
+%% 2. Add \mkbibemph for slant numbers
+\renewbibmacro*{textcite}{%
+  \iffieldequals{namehash}{\cbx@lasthash}
+    {\mkbibemph{\usebibmacro{cite:comp}}}
+    {\mkbibemph{\usebibmacro{cite:dump}}%
+     \ifbool{cbx:parens}
+       {\printtext{\bibcloseparen}\global\boolfalse{cbx:parens}}
+       {}%
+     \iffirstcitekey
+       {}
+       {\textcitedelim}%
+     \usebibmacro{cite:init}%
+     \ifnameundef{labelname}
+       {\printfield[citetitle]{labeltitle}}
+       {\printnames{labelname}}%
+     \setunit*{\printdelim{namelabeldelim}}%
+     \printtext{\bibopenparen}\global\booltrue{cbx:parens}%
+     \ifnumequal{\value{citecount}}{1}
+       {\usebibmacro{prenote}}
+       {}%
+     \mkbibemph{\usebibmacro{cite:comp}}%
+     \stepcounter{textcitecount}%
+     \savefield{namehash}{\cbx@lasthash}}}
+
+
+%% Redefine biblio list format: borrowed from numeric.bbx
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{labelprefix}%
+        \printfield{labelnumber}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      % Cancel left margin
+      \setlength{\leftmargin}{0pt}
+      % Set itemindent equal to hangindent to cancel hanging
+      \setlength{\itemindent}{\labelwidth}
+        \addtolength{\itemindent}{\labelsep}
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
