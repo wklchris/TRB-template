@@ -9,8 +9,9 @@
 1. ['trbart': 一个非官方的 TRB 投稿 LaTeX 模板](#trbart-一个非官方的-trb-投稿-latex-模板)
    1. [依赖项](#依赖项)
    2. [快速用户指南：如何使用](#快速用户指南如何使用)
-      1. [复制基础文件](#复制基础文件)
-      2. [命令列表](#命令列表)
+      1. [在线使用该模板: Overleaf](#在线使用该模板-overleaf)
+      2. [本地使用该模板：复制基础文件](#本地使用该模板复制基础文件)
+      3. [命令列表](#命令列表)
    3. [高级指南](#高级指南)
    4. [参考文献](#参考文献)
 
@@ -24,11 +25,22 @@
 
 ## 快速用户指南：如何使用
 
-在开始试用模板前，建议阅读“快速用户指南”（本节）的全部内容。
+在开始试用模板前，建议阅读“快速用户指南”（本节）的全部内容。您可以选择在 Overleaf 上使用，或者在本地使用。
 
-### 复制基础文件
+### 在线使用该模板: Overleaf
 
-请依照以下步骤开始使用本模板：
+> 请注意：在 Overleaf 上的版本可能不是最新的。如有重要更新，我将每年更新一次 Overleaf 模板。
+> 
+> 目前它对应本仓库的 ad4abe9 提交（2020 年 7 月 21 日）。
+
+该模板已经被上传至 Overleaf，链接于：
+
+[An unofficial template for TRB meeting - Overleaf, Online LaTeX Editor](https://www.overleaf.com/latex/templates/trbart-an-unofficial-template-for-trb-meeting/hdpwdxtppqvt)
+
+
+### 本地使用该模板：复制基础文件
+
+如果您已在本地安装了 LaTeX 套件，您可以在本地使用该模板。请依照以下步骤开始使用本模板：
 1. 为你的 LaTeX 项目创建一个文件夹。如果你使用 Overleaf，创建一个新项目。
 2. 准备以下文件：
    - 下载文档类文件 `trbart.cls`.

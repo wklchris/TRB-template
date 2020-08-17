@@ -1,7 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{trbart}[2020/07/16]
 
-% --- Updated before 99th (Jan 2020) TRB meeting ---
+% Repo: https://github.com/wklchris/TRB-template
+% License: See the LICENSE file in the repository.
+
+% For TRB's requirement, see: http://onlinepubs.trb.org/onlinepubs/AM/InfoForAuthors.pdf
+
 % Requirements not controled by commands:
 % * Single spaced
 % * Abstract <= 250 words

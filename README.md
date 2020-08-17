@@ -9,8 +9,9 @@ On using this template, you should be aware that the author of this template is 
 1. ['trbart': An unofficial TRB LaTeX Template](#trbart-an-unofficial-trb-latex-template)
    1. [Dependencies](#dependencies)
    2. [Quick User Guide: How to Use](#quick-user-guide-how-to-use)
-      1. [Clone basic files](#clone-basic-files)
-      2. [List of commands](#list-of-commands)
+      1. [Use the template online: Overleaf](#use-the-template-online-overleaf)
+      2. [Use the template locally: Clone basic files](#use-the-template-locally-clone-basic-files)
+      3. [List of commands](#list-of-commands)
    3. [Advanced guide](#advanced-guide)
    4. [References](#references)
 
@@ -24,11 +25,21 @@ You can read the `trbart.cls` file thoroughly to check the packages required by 
 
 ## Quick User Guide: How to Use
 
-It's recommended to read through this quick guide before trying out the template.
+It's recommended to read through this quick guide before trying out the template. You can use this template either on Overleaf or locally.
 
-### Clone basic files
+### Use the template online: Overleaf
 
-To start with this template, you may follow these steps:
+> Notice: The Overleaf version may not be the latest one. I plan to update it to Overleaf annually (if there is any critical change).
+>
+> Currently it is a clone of commit ad4abe9 of this repo (on July 21, 2020). 
+
+This template has been uploaded to Overleaf, serving at:
+
+[An unofficial template for TRB meeting - Overleaf, Online LaTeX Editor](https://www.overleaf.com/latex/templates/trbart-an-unofficial-template-for-trb-meeting/hdpwdxtppqvt)
+
+### Use the template locally: Clone basic files
+
+You can use this template locally if you have LaTeX distribution installed on your machine. To start with this template, you may follow these steps:
 1. Create a folder for your LaTeX project. If you are using Overleaf, create a new project.
 2. Prepare following files:
    - Download the document class file `trbart.cls`.
