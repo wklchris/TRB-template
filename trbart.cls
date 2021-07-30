@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{trbart}[2020/07/16]
+\ProvidesClass{trbart}[2021/07/29]
 
 % Repo: https://github.com/wklchris/TRB-template
 % License: See the LICENSE file in the repository.
@@ -28,7 +28,8 @@
 \RequirePackage{geometry}
   \geometry{
     paperwidth=8.5in, paperheight=11in,
-    hmargin=1in, vmargin=1in
+    hmargin=1in, vmargin=1in,
+    headheight=16pt  % Personal recommend, but can be customized
   }
 
 % Font: Times Roman.
@@ -57,6 +58,17 @@
   \titleformat{\subsubsection}{\itshape}{}{0pt}{}
   \titlespacing*{\subsubsection}{0pt}{\baselineskip}{0pt}
 
+% Page heads: Put author surnames and page number in page heads
+\RequirePackage{fancyhdr}
+\newcommand{\trbheader}[1]{%
+    \fancyhf{}  % clear all fields
+    \pagestyle{fancy}
+        \lhead{\textit{#1}}
+        \rhead{\thepage}
+}
+%% Remove separate line around head & foot
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
 % Tables
 \RequirePackage{caption}
   \captionsetup{
