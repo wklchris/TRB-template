@@ -9,7 +9,6 @@
 % Requirements not controled by commands:
 % * Single spaced
 % * Abstract <= 250 words
-% * Figures <= 6
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{
    family=trbart,
@@ -17,6 +16,8 @@
 }
 \DeclareBoolOption[true]{numericbib}
 \DeclareComplementaryOption{authoryearbib}{numericbib}
+\DeclareBoolOption[true]{autowordcount}
+\DeclareComplementaryOption{manualwordcount}{autowordcount}
 
 % Doc class: fontsize>=10pt.
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
@@ -69,6 +70,21 @@
 %% Remove separate line around head & foot
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+
+% Auto Count: avaliable when 'autowordcount' doc opotion is given
+\iftrbart@autowordcount
+  %% Count tables
+  \RequirePackage{totcount} 
+    \regtotcounter[auxfile=table.count]{table} 
+  %% Count words: write to texcount.count file
+  %% Overleaf uses (1,0,...,0) weights for the '-sum' arg. These weights are for:
+  %%   text words, header words, caption words, #headers,
+  %%   #floats, #inlined formulae, #displayed formulae
+              #floats, #inlined formulae, #displayed formulae)
+  \newtotcounter[auxfile=text.count]{word}
+  \immediate\write18{texcount -1 -sum="1,0,0,0,0,0,0" -merge main.tex > texcount.count}
+\fi
+
 % Tables
 \RequirePackage{caption}
   \captionsetup{
@@ -104,14 +120,27 @@
   \str_gset:Nn \g_title_str {#1}
 }
 
-%% Define word and table count.
-%% The total words will be computed automatically.
+%% Define manual count command \trb[word,table]count.
+%%   The total words will be computed automatically.
 \clist_map_inline:nn {word,table} {
   \int_new:c {g_#1_int}
   \cs_gset:cpn {trb#1count} ##1 {
     \int_set:cn {g_#1_int} {##1}
   }
 }
+%% Auto count is enabled with the 'autowordcount' doc option
+\iftrbart@autowordcount
+  %% Auto table count by totcount package
+  \int_set:cn {g_table_int} {\totvalue{table}}
+  %% Auto word count by texcount command
+  %%   Load the file into a token list then save it as int
+  \tl_new:c {l_texcount_tl}
+  \ior_new:N \l_texcount_stream
+  \ior_open:Nn \l_texcount_stream {texcount.count}
+  \ior_get:NN \l_texcount_stream \l_texcount_tl
+  \ior_close:N \l_texcount_stream
+  \int_set:cn {g_word_int} {\l_texcount_tl}
+\fi
 
 %% Define a list of \trb* functions
 \clist_map_inline:nn {author,affil,address,email,orcid} {
@@ -236,6 +265,13 @@
     \setlist[itemize]{itemsep=5pt,parsep=0pt,topsep=1ex,partopsep=0pt,listparindent=0.8\parindent}
     \setlist[itemize, 2]{label={$\star$}}
     \setlist[description]{font=\bfseries\ttfamily~,itemsep=5pt,parsep=0pt,topsep=1ex,partopsep=0pt}
+%% Inline enumarate list
+\newlist{enuminline}{enumerate*}{1}
+\setlist*[enuminline,1]{
+    label=(\arabic*),
+    before=\unskip{: },
+    itemjoin={{; }}, itemjoin*={{, and }}
+}
 
 % Cross references & URLs
 % \RequirePackage[hyphens]{url}  % allow URL line breaks
