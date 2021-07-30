@@ -114,7 +114,7 @@
 }
 
 %% Define a list of \trb* functions
-\clist_map_inline:nn {author,affil,address,email} {
+\clist_map_inline:nn {author,affil,address,email,orcid} {
   \clist_gclear_new:c {g_#1_clist}
   \cs_gset:cpn {trb#1} ##1 {
     \clist_gset:cn {g_#1_clist} {##1}
@@ -135,7 +135,8 @@
     \textbf{\clist_item:Nn \g_author_clist {\l_tmpa_int}}\linebreak
     \clist_item:Nn \g_affil_clist {\l_tmpa_int}\linebreak
     \clist_item:Nn \g_address_clist {\l_tmpa_int}\linebreak
-    \email{\clist_item:Nn \g_email_clist {\l_tmpa_int}}
+    \email{\clist_item:Nn \g_email_clist {\l_tmpa_int}}\linebreak
+    ORCID:~\clist_item:Nn \g_orcid_clist {\l_tmpa_int}
     \linebreak\mbox{}\linebreak
     \int_incr:N \l_tmpa_int
   }
@@ -173,8 +174,9 @@
 \DeclareFieldFormat{labelnumberwidth}{#1\adddot} 
 %% Define a simple command to print bibliography
 \newcommand\printtrbrefs{
-  \clearpage\nolinenumbers%
-  \noindent\printbibliography[title=REFERENCES]
+  \clearpage%
+  \noindent\printbibliography[title=REFERENCES]%
+  \nolinenumbers
 }
 
 
@@ -223,7 +225,8 @@
 
 % Highlights
 \RequirePackage{xcolor}
-  \newcommand\tbd[1]{\textcolor{red}{(#1)}}
+    \newcommand\tbd[1]{\textcolor{blue}{(#1)}}
+    \newcommand\tbdone[1]{\textcolor{blue}{\checkmark~(#1)}}
 
 % Lists
 \RequirePackage[inline]{enumitem}
