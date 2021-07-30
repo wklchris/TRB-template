@@ -6,6 +6,12 @@ This is a **unofficial** LaTeX template for Transportation Research Board (TRB) 
 
 On using this template, you should be aware that the author of this template is NOT responsible for rejections of inappropriate formated docs due to users' misusage/mismodification of this template. Please double check your final format before your submission to TRB.
 
+Key features:
+
+- **Fully automated** word \& table counts.
+- Ready-to-use default format. None parameter adjustment is necessary.
+- A list of shorcuts math commands.
+
 1. ['trbart': An unofficial TRB LaTeX Template](#trbart-an-unofficial-trb-latex-template)
    1. [Dependencies](#dependencies)
    2. [Quick User Guide: How to Use](#quick-user-guide-how-to-use)
@@ -68,15 +74,19 @@ Here is the list of commands provided by this template. Only commands of differe
 | **Doc Options** |||
 | `authoryearbib` | Use a customized authoryear style for bib | `\documentclass[authoryearbib]{trbart}` |
 | `numericbib` | (Default, **Required in TRB draft**) Use the customized numeric style for bib | `\documentclass[numericbib]{trbart}` |
+| `autowordcount` | (Default) Automatically count the words and number of tables | `\documentclass[autowordcount]{trbart}` |
+| `manualwordcount` | Turn off auto count and manually input words \& tables count | `\documentclass[manualwordcount]{trbart}` |
 | `<article options>` | Options that works for the traditional `article` doc class | `\documentclass[12pt]{article}` |
 | **Preamble** |||
 | `\trbtitle` | The title of the doc | `\trbtitle{Capitalized Title}` |
 | `\trbauthor` | A comma-seperated list of authors | `\trbauthor{Tom Joe,Mo Lee}` |
-| `\trbaffil` | A comma-seperated list of affiliations | `\trbaffil{Univ A,Univ B}` |
-| `\trbaddress` | A comma-seperated list of addresses | `\trbaddress{{City, State},{C, S}}` |
-| `\trbemail` | A comma-seperated list of emails | `\trbemail{a@eg.com,b@eg.net}` |
-| `\trbwordcount` | Total word (excluding tables) of the doc | `\trbwordcount{5000}` |
-| `\trbtablecount` | Total number of tables of the doc | `\trbtablecount{3}` |
+| `\trbheader` | The text displayed on the page head. Usually authors' last names. | `\trbheader{Joe and Lee}` |
+| `\trbaffil` | A comma-separated list of affiliations | `\trbaffil{Univ A,Univ B}` |
+| `\trbaddress` | A comma-separated list of addresses | `\trbaddress{{City, State},{C, S}}` |
+| `\trbemail` | A comma-separated list of emails | `\trbemail{a@eg.com,b@eg.net}` |
+| `\trborcid` | (Optional) A comma-separated list of ORCIDs | `\trborcid{xxx-xxxx,yyyy-yyyy}` |
+| `\trbwordcount` | (Not used by default) Total word (excluding tables) of the doc | `\trbwordcount{5000}` |
+| `\trbtablecount` | (Not used by default) Total number of tables of the doc | `\trbtablecount{3}` |
 | **Abstract** |||
 | `\trbkeywords` | A comma-seperated list of keywords | `\trbkeywords{Traffic Flow,Transp}` |
 | **Math**<sup>†</sup> |||
@@ -88,6 +98,7 @@ Here is the list of commands provided by this template. Only commands of differe
 | `\printtrbrefs`| Print the references list | `\printtrbrefs` |
 | **Misc** |||
 | `\tbd` | A handy command for comments | `\tbd{Comment here}` | 
+| `\tbdone` | Comments with a checkmark before it, implying that it has been accepted | `\tbdone{Comment}` |
 
 <sup>†</sup> *In math environments under this template, it is **highly recommended to use {equation} environment** since it has been adjusted for better line numbering. For example, instead of using an {align} environment, use an {equation}-{aligned} nested environment.*
 

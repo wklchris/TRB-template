@@ -6,6 +6,12 @@
 
 在使用本模板时，您需要明白，该模板的作者 *不会* 对因用户对该模板的错误使用或编辑导致的拒稿负责。请在递交至 TRB 前仔细检查您稿件的格式。
 
+主要特性：
+
+- **完全自动**的字数统计与表格数量统计。
+- 开包即用的默认配置。无需任何参数调整。
+- 一系列快捷的数学命令。
+
 1. ['trbart': 一个非官方的 TRB 投稿 LaTeX 模板](#trbart-一个非官方的-trb-投稿-latex-模板)
    1. [依赖项](#依赖项)
    2. [快速用户指南：如何使用](#快速用户指南如何使用)
@@ -69,15 +75,19 @@
 | **文档选项** |||
 | `authoryearbib` | 使用自定义的 authoryear 引用格式 | `\documentclass[authoryearbib]{trbart}` |
 | `numericbib` | （默认，**TRB送审稿件要求**）使用自定义的 numeric 引用格式 | `\documentclass[numericbib]{trbart}` |
+| `autowordcount` | （默认） 自动对字数与表格数量进行统计 | `\documentclass[autowordcount]{trbart}` |
+| `manualwordcount` | 关闭自动统计，改由用户手动输入字数与表格数 | `\documentclass[manualwordcount]{trbart}` |
 | `<article options>` | 原 `article` 文档类可接受的选项 | `\documentclass[12pt]{article}` |
 | **导言区** |||
 | `\trbtitle` | 文档标题 | `\trbtitle{Capitalized Title}` |
 | `\trbauthor` | 逗号分隔的作者列表 | `\trbauthor{Tom Joe,Mo Lee}` |
+| `\trbheader` | 在页眉上显示的信息。通常是作者们的姓氏。 | `\trbheader{Joe and Lee}` |
 | `\trbaffil` | 逗号分隔的机构列表 | `\trbaffil{Univ A,Univ B}` |
 | `\trbaddress` | 逗号分隔的地址列表 | `\trbaddress{{City, State},{C, S}}` |
 | `\trbemail` | 逗号分隔的邮件列表 | `\trbemail{a@eg.com,b@eg.net}` |
-| `\trbwordcount` | 除表格外的全文字数 | `\trbwordcount{5000}` |
-| `\trbtablecount` | 全文表格数量 | `\trbtablecount{3}` |
+| `\trborcid` | （非必须）逗号分隔的 ORCID 列表 | `\trborcid{xxx-xxxx,yyyy-yyyy}` |
+| `\trbwordcount` | （默认不再需要）除表格外的全文字数 | `\trbwordcount{5000}` |
+| `\trbtablecount` | （默认不再需要）全文表格数量 | `\trbtablecount{3}` |
 | **摘要** |||
 | `\trbkeywords` | 逗号分隔的关键字 | `\trbkeywords{Traffic Flow,Transp}` |
 | **数学环境**<sup>†</sup> |||
